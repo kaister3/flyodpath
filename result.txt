@@ -1,5 +1,0 @@
-0 cannot reach 1 7 0 
-4 0 cannot reach cannot reach 0 
-cannot reach cannot reach 0 cannot reach 0 
-cannot reach cannot reach 6 0 0 
-0 0 0 0 0 

@@ -7,14 +7,17 @@ using std::vector;
 typedef vector<size_t> D1array;
 typedef vector<vector<size_t>> D2array;
 
-//int floydwarshallMethod(int i, int j, D2array matrix)
-//{
+int floydwarshallMethod(int i, int j, D2array matrix)
+{
 	/*
 	input:the distance between each 2 points
 	output:the shortest distance between each 2 points
 	*/
-
-//}
+	if (i == j)
+	{
+		return
+	}
+}
 
 int main()
 {
@@ -30,9 +33,12 @@ int main()
 	cout << "Make sure your matrix has " << N << " * " << N << " numbers."  << endl;
 	
 	D2array matrix(N + 1, D1array(N + 1, 0));//initial a (n+1)*(n+1)matrix
+	D2array point_route(N + 1, D1array(N + 1, 0));//initial point route
 
-	ifstream fin("data.txt");
-	ofstream fout("result.txt");
+	ifstream fin("Ddata.txt");
+	ifstream fin_point("Pdata.txt");
+	ofstream fout("D_result.txt");
+	ofstream fout("P_result");
 	if (!fin)
 	{
 		cout << "read in failed!" << endl;
@@ -48,20 +54,6 @@ int main()
 		}
 		cout << "read in success!" << endl;
 	}
-
-	for (i = 1; i <= N; i++)
-	{
-		for ( j = 1; j <= N; j++)
-		{
-			for (k = 1; k <= N; k++)
-			{
-				if (matrix[i][j] > matrix[i][k] + matrix[i][j])
-				{
-					matrix[i][j] = matrix[i][k] + matrix[k][j];//update the shorest distance
-				}
-			}
-		}
-	}//end of floyd method
 
 	for (i =1; i <= N; i++)
 	{
