@@ -7,7 +7,8 @@ using std::vector;
 typedef vector<size_t> D1array;
 typedef vector<vector<size_t>> D2array;
 
-int floydwarshallMethod(int N, D2array matrix, D2array Pi);
+void floydwarshallMethod(int N, D2array matrix, D2array Pi);
+void printPath(int i, int j, D2array Pi);
 
 int main()
 {
@@ -31,15 +32,15 @@ int main()
 		{
 			if (matrix[i][j] >= INF)
 			{
-				Pi[i][j] = INF;
+				Pi[i][j] = -1;
 			}
 			if (i == j)
 			{
-				Pi[i][j] = 0;
+				Pi[i][j] = -1;
 			}
 			if (i != j && matrix[i][j] < INF)
 			{
-				Pi[i][j] = j;
+				Pi[i][j] = i;
 			}
 		}
 	}
@@ -91,10 +92,45 @@ int main()
 		}
 		foutP << "\n";
 	}
+	//output the result
+	for (int i = 1; i <= N; i++)
+	{
+		for (int j = 1; j <= N; j++)
+		{
+			if (matrix[i][j] != 99999 && i != j)
+			{
+				cout << "the shortest path between "
+				 << i << " and " << j << " is " << matrix[i][j] << endl;
+				printPath(i, j, Pi);
+				cout << endl;
+			}
+		}
+	}
+	getchar();
+	getchar();
 	return 0;
 }
 
-int floydwarshallMethod(int N, D2array matrix, D2array Pi)
+void printPath(int i, int j, D2array Pi)
+{
+	if (i == j)
+	{
+		cout << i;
+		return;
+	}
+	else if (Pi[i][j] == -1)
+	{
+		cout << "\n no Path from " << i << " to " << j << endl;
+		return;
+	}else
+	{
+		printPath(i, Pi[i][j], Pi);
+		cout << " -> " << j << endl;
+		return;
+	}
+}
+
+void floydwarshallMethod(int N, D2array matrix, D2array Pi)
 {
 	/*
 	input:the distance between each 2 points
@@ -118,5 +154,4 @@ int floydwarshallMethod(int N, D2array matrix, D2array Pi)
 			}
 		}
 	}
-	return 0;
 }
